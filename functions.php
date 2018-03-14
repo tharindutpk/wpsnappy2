@@ -1,31 +1,28 @@
 <?php
 /**
- * Genesis Starter Theme.
+ * WPSnappy Theme.
  *
- * @package      GenesisStarter
- * @link         https://seothemes.com/themes/genesis-starter
- * @author       SEO Themes
- * @copyright    Copyright © 2017 SEO Themes
+ * @package      WPSnappy
+ * @link         https://www.wpsnappy.com/
+ * @author       Tharindu Pramuditha
  * @license      GPL-2.0+
  */
 
  // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
-
 	die;
-
 }
 
 // Child theme (do not remove).
 include_once( get_template_directory() . '/lib/init.php' );
 
 // Define theme constants.
-define( 'CHILD_THEME_NAME', 'Genesis Starter' );
-define( 'CHILD_THEME_URL', 'https://seothemes.com/themes/genesis-starter' );
-define( 'CHILD_THEME_VERSION', '2.2.7' );
+define( 'CHILD_THEME_NAME', 'WPSnappy' );
+define( 'CHILD_THEME_URL', 'https://www.wpsnappy.com/' );
+define( 'CHILD_THEME_VERSION', '1.0.0' );
 
 // Set Localization (do not remove).
-load_child_theme_textdomain( 'genesis-starter', apply_filters( 'child_theme_textdomain', get_stylesheet_directory() . '/languages', 'genesis-starter' ) );
+load_child_theme_textdomain( 'wpsnappy', apply_filters( 'child_theme_textdomain', get_stylesheet_directory() . '/languages', 'wpsnappy' ) );
 
 // Remove secondary sidebar.
 unregister_sidebar( 'sidebar-alt' );
@@ -68,8 +65,8 @@ add_theme_support( 'genesis-accessibility', array(
 
 // Enable support for custom navigation menus.
 add_theme_support( 'genesis-menus' , array(
-	'primary'   => __( 'Header Menu', 'genesis-starter' ),
-	'secondary' => __( 'After Header Menu', 'genesis-starter' ),
+	'primary'   => __( 'Header Menu', 'wpsnappy' ),
+	'secondary' => __( 'After Header Menu', 'wpsnappy' ),
 ) );
 
 // Enable support for viewport meta tag for mobile browsers.
@@ -143,7 +140,7 @@ add_theme_support( 'custom-header', array(
 	'flex-width'         => true,
 	'uploads'            => true,
 	'video'              => true,
-	'wp-head-callback'   => 'genesis_starter_custom_header',
+	'wp-head-callback'   => 'wpsnappy_custom_header',
 ) );
 
 // Register default header (just in case).
@@ -151,13 +148,13 @@ register_default_headers( array(
 	'child' => array(
 		'url'           => '%2$s/assets/images/hero.jpg',
 		'thumbnail_url' => '%2$s/assets/images/hero.jpg',
-		'description'   => __( 'Hero Image', 'genesis-starter' ),
+		'description'   => __( 'Hero Image', 'wpsnappy' ),
 	),
 ) );
 
 // Register a custom layout.
 genesis_register_layout( 'custom-layout', array(
-	'label' => __( 'Custom Layout', 'genesis-starter' ),
+	'label' => __( 'Custom Layout', 'wpsnappy' ),
 	'img'   => get_stylesheet_directory_uri() . '/assets/images/custom-layout.gif',
 ) );
 
@@ -177,38 +174,28 @@ add_action( 'genesis_after_header_wrap', 'genesis_do_subnav' );
 remove_action( 'genesis_before_footer', 'genesis_footer_widget_areas' );
 add_action( 'genesis_before_footer_wrap', 'genesis_footer_widget_areas', 5 );
 
-add_action( 'wp_enqueue_scripts', 'genesis_starter_scripts_styles', 99 );
+add_action( 'wp_enqueue_scripts', 'wpsnappy_scripts_styles', 99 );
 /**
  * Enqueue theme scripts and styles.
  *
  * @return void
  */
-function genesis_starter_scripts_styles() {
-
-	// Remove Simple Social Icons CSS (included with theme).
-	wp_dequeue_style( 'simple-social-icons-font' );
+function wpsnappy_scripts_styles() {
 
 	// Google fonts.
 	wp_enqueue_style( 'google-fonts', '//fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700', array(), CHILD_THEME_VERSION );
-
-	// Conditionally load WooCommerce styles.
-	if ( genesis_starter_is_woocommerce_page() ) {
-
-		wp_enqueue_style( 'genesis-starter-woocommerce', get_stylesheet_directory_uri() . '/assets/styles/min/woocommerce.min.css', array(), CHILD_THEME_VERSION );
-
-	}
 
 	// Check if debugging is enabled.
 	$suffix = defined( SCRIPT_DEBUG ) && SCRIPT_DEBUG ? '' : 'min.';
 	$folder = defined( SCRIPT_DEBUG ) && SCRIPT_DEBUG ? '' : 'min/';
 
 	// Enqueue responsive menu script.
-	wp_enqueue_script( 'genesis-starter', get_stylesheet_directory_uri() . '/assets/scripts/' . $folder . 'scripts.' . $suffix . 'js', array( 'jquery' ), CHILD_THEME_VERSION, true );
+	wp_enqueue_script( 'wpsnappy', get_stylesheet_directory_uri() . '/assets/scripts/' . $folder . 'scripts.' . $suffix . 'js', array( 'jquery' ), CHILD_THEME_VERSION, true );
 
 	// Localize responsive menu script.
-	wp_localize_script( 'genesis-starter', 'genesis_responsive_menu', array(
-		'mainMenu'         => __( 'Menu', 'genesis-starter' ),
-		'subMenu'          => __( 'Menu', 'genesis-starter' ),
+	wp_localize_script( 'wpsnappy', 'genesis_responsive_menu', array(
+		'mainMenu'         => __( 'Menu', 'wpsnappy' ),
+		'subMenu'          => __( 'Menu', 'wpsnappy' ),
 		'menuIconClass'    => null,
 		'subMenuIconClass' => null,
 		'menuClasses'      => array(
@@ -226,9 +213,6 @@ include_once( get_stylesheet_directory() . '/includes/helpers.php' );
 // Load miscellaneous functions.
 include_once( get_stylesheet_directory() . '/includes/extras.php' );
 
-// Load widget areas.
-include_once( get_stylesheet_directory() . '/includes/widgets.php' );
-
 // Load page header.
 include_once( get_stylesheet_directory() . '/includes/header.php' );
 
@@ -237,6 +221,3 @@ include_once( get_stylesheet_directory() . '/includes/customize.php' );
 
 // Load default settings.
 include_once( get_stylesheet_directory() . '/includes/defaults.php' );
-
-// Load recommended plugins.
-include_once( get_stylesheet_directory() . '/includes/plugins.php' );

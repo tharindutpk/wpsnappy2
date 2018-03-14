@@ -1,22 +1,19 @@
 <?php
 /**
- * This file adds the page header to the Genesis Starter Theme.
+ * This file adds the page header to the WPSnappy Theme.
  *
- * @package   GenesisStarter
- * @link      https://seothemes.com/themes/genesis-starter
- * @author    SEO Themes
- * @copyright Copyright © 2017 SEO Themes
+ * @package   WPSnappy
+ * @link      https://www.wpsnappy.com/
+ * @author    Tharindu Pramuditha
  * @license   GPL-2.0+
  */
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
-
 	die;
-
 }
 
-add_filter( 'genesis_attr_entry', 'genesis_starter_entry_attr' );
+add_filter( 'genesis_attr_entry', 'wpsnappy_entry_attr' );
 /**
  * Add itemref attribute to link entry-title.
  *
@@ -32,7 +29,7 @@ add_filter( 'genesis_attr_entry', 'genesis_starter_entry_attr' );
  *
  * @return array
  */
-function genesis_starter_entry_attr( $atts ) {
+function wpsnappy_entry_attr( $atts ) {
 
 	$atts['itemref'] = 'page-header';
 
@@ -40,7 +37,7 @@ function genesis_starter_entry_attr( $atts ) {
 
 }
 
-add_action( 'genesis_before', 'genesis_starter_page_header_setup' );
+add_action( 'genesis_before', 'wpsnappy_page_header_setup' );
 /**
  * Set up page header.
  *
@@ -51,7 +48,7 @@ add_action( 'genesis_before', 'genesis_starter_page_header_setup' );
  *
  * @return void
  */
-function genesis_starter_page_header_setup() {
+function wpsnappy_page_header_setup() {
 
 	// Remove default page header.
 	remove_action( 'genesis_entry_header', 'genesis_entry_header_markup_open', 5 );
@@ -70,11 +67,11 @@ function genesis_starter_page_header_setup() {
 	remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
 
 	// Add custom page header.
-	add_action( 'genesis_starter_page_header', 'genesis_do_posts_page_heading' );
-	add_action( 'genesis_starter_page_header', 'genesis_do_date_archive_title' );
-	add_action( 'genesis_starter_page_header', 'genesis_do_taxonomy_title_description' );
-	add_action( 'genesis_starter_page_header', 'genesis_do_author_title_description' );
-	add_action( 'genesis_starter_page_header', 'genesis_do_cpt_archive_title_description' );
+	add_action( 'wpsnappy_page_header', 'genesis_do_posts_page_heading' );
+	add_action( 'wpsnappy_page_header', 'genesis_do_date_archive_title' );
+	add_action( 'wpsnappy_page_header', 'genesis_do_taxonomy_title_description' );
+	add_action( 'wpsnappy_page_header', 'genesis_do_author_title_description' );
+	add_action( 'wpsnappy_page_header', 'genesis_do_cpt_archive_title_description' );
 
 	// Remove search results and shop page titles.
 	add_filter( 'woocommerce_show_page_title', '__return_null' );
@@ -82,7 +79,7 @@ function genesis_starter_page_header_setup() {
 
 }
 
-add_action( 'genesis_starter_page_header', 'genesis_starter_page_title', 10 );
+add_action( 'wpsnappy_page_header', 'wpsnappy_page_title', 10 );
 /**
  * Display title in page header.
  *
@@ -95,7 +92,7 @@ add_action( 'genesis_starter_page_header', 'genesis_starter_page_title', 10 );
  *
  * @return void
  */
-function genesis_starter_page_title() {
+function wpsnappy_page_title() {
 
 	// Add post titles back inside posts loop.
 	if ( is_home() || is_archive() || is_category() || is_tag() || is_tax() || is_search() || is_page_template( 'page_blog.php' ) ) {
@@ -118,7 +115,7 @@ function genesis_starter_page_title() {
 		genesis_markup( array(
 			'open'    => '<h1 %s>',
 			'close'   => '</h1>',
-			'content' => apply_filters( 'genesis_starter_latest_posts_title', __( 'Latest Posts', 'genesis-starter' ) ),
+			'content' => apply_filters( 'wpsnappy_latest_posts_title', __( 'Latest Posts', 'wpsnappy' ) ),
 			'context' => 'entry-title',
 		) );
 
@@ -127,7 +124,7 @@ function genesis_starter_page_title() {
 		genesis_markup( array(
 			'open'    => '<h1 %s>',
 			'close'   => '</h1>',
-			'content' => apply_filters( 'genesis_404_entry_title', __( 'Not found, error 404', 'genesis-starter' ) ),
+			'content' => apply_filters( 'genesis_404_entry_title', __( 'Not found, error 404', 'wpsnappy' ) ),
 			'context' => 'entry-title',
 		) );
 
@@ -136,7 +133,7 @@ function genesis_starter_page_title() {
 		genesis_markup( array(
 			'open'    => '<h1 %s>',
 			'close'   => '</h1>',
-			'content' => apply_filters( 'genesis_search_title_text', __( 'Search results for: ', 'genesis-starter' ) ) . get_search_query(),
+			'content' => apply_filters( 'genesis_search_title_text', __( 'Search results for: ', 'wpsnappy' ) ) . get_search_query(),
 			'context' => 'entry-title',
 		) );
 
@@ -152,7 +149,7 @@ function genesis_starter_page_title() {
 
 }
 
-add_action( 'genesis_starter_page_header', 'genesis_starter_page_excerpt', 20 );
+add_action( 'wpsnappy_page_header', 'wpsnappy_page_excerpt', 20 );
 /**
  * Display page excerpt.
  *
@@ -164,7 +161,7 @@ add_action( 'genesis_starter_page_header', 'genesis_starter_page_excerpt', 20 );
  *
  * @return void
  */
-function genesis_starter_page_excerpt() {
+function wpsnappy_page_excerpt() {
 
 	if ( class_exists( 'WooCommerce' ) && is_shop() ) {
 
@@ -201,21 +198,21 @@ function genesis_starter_page_excerpt() {
 	}
 }
 
-add_action( 'genesis_before_content_sidebar_wrap', 'genesis_starter_page_header' );
+add_action( 'genesis_before_content_sidebar_wrap', 'wpsnappy_page_header' );
 /**
  * Display the page header.
  *
  * Conditionally outputs the opening and closing page header markup and runs
- * genesis_starter_page_header which all of our header functions are hooked to.
+ * wpsnappy_page_header which all of our header functions are hooked to.
  *
  * @since  2.2.4
  *
  * @return void
  */
-function genesis_starter_page_header() {
+function wpsnappy_page_header() {
 
 	// Output opening markup.
-	if ( apply_filters( 'genesis_starter_page_header_open', true ) ) {
+	if ( apply_filters( 'wpsnappy_page_header_open', true ) ) {
 
 		?>
 		<section id="page-header" class="page-header" role="banner"><div class="wrap">
@@ -226,8 +223,8 @@ function genesis_starter_page_header() {
 	/**
 	 * Do page header hook.
 	 *
-	 * @hooked genesis_starter_page_title - 10
-	 * @hooked genesis_starter_page_excerpt - 20
+	 * @hooked wpsnappy_page_title - 10
+	 * @hooked wpsnappy_page_excerpt - 20
 	 * @hooked genesis_do_posts_page_heading
 	 * @hooked genesis_do_date_archive_title
 	 * @hooked genesis_do_blog_template_heading
@@ -235,10 +232,10 @@ function genesis_starter_page_header() {
 	 * @hooked genesis_do_author_title_description
 	 * @hooked genesis_do_cpt_archive_title_description
 	 */
-	do_action( 'genesis_starter_page_header' );
+	do_action( 'wpsnappy_page_header' );
 
 	// Output closing markup.
-	if ( apply_filters( 'genesis_starter_page_header_close', true ) ) {
+	if ( apply_filters( 'wpsnappy_page_header_close', true ) ) {
 
 		?>
 		</div></section>

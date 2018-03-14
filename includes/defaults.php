@@ -1,22 +1,19 @@
 <?php
 /**
- * This file registers the required plugins for the Genesis Starter theme.
+ * This file registers the required plugins for the WPSnappy theme.
  *
- * @package   GenesisStarter
- * @link      https://seothemes.com/themes/genesis-starter
- * @author    SEO Themes
- * @copyright Copyright © 2017 SEO Themes
+ * @package   WPSnappy
+ * @link      https://www.wpsnappy.com/
+ * @author    Tharindu Pramuditha
  * @license   GPL-2.0+
  */
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
-
 	die;
-
 }
 
-add_filter( 'genesis_theme_settings_defaults', 'genesis_starter_theme_defaults' );
+add_filter( 'genesis_theme_settings_defaults', 'wpsnappy_theme_defaults' );
 /**
  * Update Theme Settings upon reset.
  *
@@ -26,7 +23,7 @@ add_filter( 'genesis_theme_settings_defaults', 'genesis_starter_theme_defaults' 
  *
  * @return array Custom theme settings.
  */
-function genesis_starter_theme_defaults( $defaults ) {
+function wpsnappy_theme_defaults( $defaults ) {
 
 	$defaults['blog_cat_num']              = 6;
 	$defaults['content_archive']           = 'excerpt';
@@ -41,7 +38,7 @@ function genesis_starter_theme_defaults( $defaults ) {
 
 }
 
-add_action( 'after_switch_theme', 'genesis_starter_theme_setting_defaults' );
+add_action( 'after_switch_theme', 'wpsnappy_theme_setting_defaults' );
 /**
  * Update Theme Settings upon activation.
  *
@@ -49,7 +46,7 @@ add_action( 'after_switch_theme', 'genesis_starter_theme_setting_defaults' );
  *
  * @return void
  */
-function genesis_starter_theme_setting_defaults() {
+function wpsnappy_theme_setting_defaults() {
 
 	if ( function_exists( 'genesis_update_settings' ) ) {
 
@@ -70,7 +67,7 @@ function genesis_starter_theme_setting_defaults() {
 
 }
 
-add_filter( 'simple_social_default_styles', 'genesis_starter_social_default_styles' );
+add_filter( 'simple_social_default_styles', 'wpsnappy_social_default_styles' );
 /**
  * Starter Pro Simple Social Icon Defaults.
  *
@@ -80,7 +77,7 @@ add_filter( 'simple_social_default_styles', 'genesis_starter_social_default_styl
  *
  * @return array Custom settings.
  */
-function genesis_starter_social_default_styles( $defaults ) {
+function wpsnappy_social_default_styles( $defaults ) {
 
 	$args = array(
 		'alignment'              => 'alignleft',
@@ -108,7 +105,7 @@ function genesis_starter_social_default_styles( $defaults ) {
 
 }
 
-add_action( 'after_switch_theme', 'genesis_starter_excerpt_metabox' );
+add_action( 'after_switch_theme', 'wpsnappy_excerpt_metabox' );
 /**
  * Display excerpt metabox by default.
  *
@@ -125,7 +122,7 @@ add_action( 'after_switch_theme', 'genesis_starter_excerpt_metabox' );
  *
  * @return void
  */
-function genesis_starter_excerpt_metabox() {
+function wpsnappy_excerpt_metabox() {
 
 	// Get current user ID.
 	$user_id = get_current_user_id();

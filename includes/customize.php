@@ -1,30 +1,27 @@
 <?php
 /**
- * This file adds customizer settings to the Genesis Starter theme.
+ * This file adds customizer settings to the WPSnappy theme.
  *
- * @package   GenesisStarter
- * @link      https://seothemes.com/themes/genesis-starter
- * @author    SEO Themes
- * @copyright Copyright © 2017 SEO Themes
+ * @package   WPSnappy
+ * @link      https://www.wpsnappy.com/
+ * @author    Tharindu Pramuditha
  * @license   GPL-2.0+
  */
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
-
 	die;
-
 }
 
 /*
  * Add any theme custom colors here.
  */
-$genesis_starter_colors = array(
+$wpsnappy_colors = array(
 	'primary'   => '#b0b5ba',
 	'secondary' => 'rgba(255, 255, 255, 0.95)',
 );
 
-add_action( 'customize_register', 'genesis_starter_customize_register' );
+add_action( 'customize_register', 'wpsnappy_customize_register' );
 /**
  * Sets up the theme customizer sections, controls, and settings.
  *
@@ -33,10 +30,10 @@ add_action( 'customize_register', 'genesis_starter_customize_register' );
  *
  * @return void
  */
-function genesis_starter_customize_register( $wp_customize ) {
+function wpsnappy_customize_register( $wp_customize ) {
 
 	// Globals.
-	global $wp_customize, $genesis_starter_colors;
+	global $wp_customize, $wpsnappy_colors;
 
 	// Load RGBA Customizer control.
 	include_once( get_stylesheet_directory() . '/includes/rgba.php' );
@@ -48,13 +45,13 @@ function genesis_starter_customize_register( $wp_customize ) {
 	 * register a customizer setting and control for each.
 	 * To add additional color settings, do not modify this
 	 * function, instead add your color name and hex value to
-	 * the $genesis_starter_colors` array at the start of this file.
+	 * the $wpsnappy_colors` array at the start of this file.
 	 */
-	foreach ( $genesis_starter_colors as $id => $rgba ) {
+	foreach ( $wpsnappy_colors as $id => $rgba ) {
 
 		// Format ID and label.
-		$setting = "genesis_starter_{$id}_color";
-		$label   = ucwords( str_replace( '_', ' ', $id ) ) . __( ' Color', 'genesis-starter' );
+		$setting = "wpsnappy_{$id}_color";
+		$label   = ucwords( str_replace( '_', ' ', $id ) ) . __( ' Color', 'wpsnappy' );
 
 		// Add color setting.
 		$wp_customize->add_setting(
@@ -91,19 +88,19 @@ function genesis_starter_customize_register( $wp_customize ) {
 	}
 }
 
-add_action( 'wp_enqueue_scripts', 'genesis_starter_customizer_output', 100 );
+add_action( 'wp_enqueue_scripts', 'wpsnappy_customizer_output', 100 );
 /**
  * Output customizer styles.
  *
  * Checks the settings for the colors defined in the settings.
  * If any of these value are set the appropriate CSS is output.
  *
- * @var   array $genesis_starter_colors Global theme colors.
+ * @var   array $wpsnappy_colors Global theme colors.
  */
-function genesis_starter_customizer_output() {
+function wpsnappy_customizer_output() {
 
 	// Set in customizer-settings.php.
-	global $genesis_starter_colors;
+	global $wpsnappy_colors;
 
 	/**
 	 * Loop though each color in the global array of theme colors
@@ -111,11 +108,11 @@ function genesis_starter_customizer_output() {
 	 * way of creating multiple variables that we can reuse. The
 	 * benefit of using a foreach loop over creating each variable
 	 * manually is that we can just declare the colors once in the
-	 * `$genesis_starter_colors` array, and they can be used in multiple ways.
+	 * `$wpsnappy_colors` array, and they can be used in multiple ways.
 	 */
-	foreach ( $genesis_starter_colors as $id => $hex ) {
+	foreach ( $wpsnappy_colors as $id => $hex ) {
 
-		${"$id"} = get_theme_mod( "genesis_starter_{$id}_color",  $hex );
+		${"$id"} = get_theme_mod( "wpsnappy_{$id}_color",  $hex );
 
 	}
 
@@ -130,7 +127,7 @@ function genesis_starter_customizer_output() {
 	 * the user from the theme customizer. If the theme mod is not
 	 * equal to the default color then the string is appended to $css.
 	 */
-	$css .= ( $genesis_starter_colors['primary'] !== $primary ) ? sprintf( '
+	$css .= ( $wpsnappy_colors['primary'] !== $primary ) ? sprintf( '
 
 		.button:hover,
 		button:hover,
@@ -155,7 +152,7 @@ function genesis_starter_customizer_output() {
 
 		', $primary ) : '';
 
-	$css .= ( $genesis_starter_colors['secondary'] !== $secondary ) ? sprintf( '
+	$css .= ( $wpsnappy_colors['secondary'] !== $secondary ) ? sprintf( '
 
 		.page-header:before {
 			background-color: %1$s;
@@ -170,7 +167,7 @@ function genesis_starter_customizer_output() {
 	if ( ! empty( $css ) ) {
 
 		// Add the inline styles, also minify CSS first.
-		wp_add_inline_style( $handle, genesis_starter_minify_css( $css ) );
+		wp_add_inline_style( $handle, wpsnappy_minify_css( $css ) );
 
 	}
 

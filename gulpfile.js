@@ -1,9 +1,9 @@
 //process.env.DISABLE_NOTIFIER = true; // Uncomment to disable all Gulp notifications.
 
 /**		
- * Genesis Starter.		
+ * WPSnappy.		
  *		
- * This file adds gulp tasks to the Genesis Starter theme.		
+ * This file adds gulp tasks to the WPSnappy theme.		
  *		
  * @author SEO themes		
  */
@@ -347,9 +347,9 @@ gulp.task('translate', function () {
 		.pipe(sort())
 
 		.pipe(wpPot({
-			domain: 'genesis-starter',
-			destFile: 'genesis-starter.pot',
-			package: 'Genesis Starter',
+			domain: 'wpsnappy',
+			destFile: 'wpsnappy.pot',
+			package: 'WPSnappy',
 			bugReport: 'https://seothemes.com/support',
 			lastTranslator: 'Lee Anthony <seothemeswp@gmail.com>',
 			team: 'SEO Themes <seothemeswp@gmail.com>'
@@ -379,7 +379,7 @@ gulp.task('zip', function () {
  */
 gulp.task('publish', function () {
 
-	gulp.src('../genesis-starter.zip')
+	gulp.src('../wpsnappy.zip')
 		.pipe(s3(aws));
 
 });
@@ -392,10 +392,10 @@ gulp.task('publish', function () {
  */
 gulp.task('rename', function () {
 
-	var old_proxy = 'genesis-starter.dev',
-		old_name = 'Genesis Starter',
-		old_domain = 'genesis-starter',
-		old_prefix = 'genesis_starter_',
+	var old_proxy = 'wpsnappy.dev',
+		old_name = 'WPSnappy',
+		old_domain = 'wpsnappy',
+		old_prefix = 'wpsnappy_',
 		old_package = 'GenesisStarter';
 
 	var new_proxy = args.to + '.dev',
@@ -468,13 +468,13 @@ gulp.task('watch', function () {
 
 	// HTTPS (optional).
 	browsersync({
-		proxy: 'http://genesis-starter.dev',
+		proxy: 'http://wpsnappy.dev',
 		port: 8000,
 		notify: false,
 		open: false,
 		// https: {
-		// 	"key": "/Users/seothemes/.valet/Certificates/genesis-starter.dev.key",
-		// 	"cert": "/Users/seothemes/.valet/Certificates/genesis-starter.dev.crt"
+		// 	"key": "/Users/seothemes/.valet/Certificates/wpsnappy.dev.key",
+		// 	"cert": "/Users/seothemes/.valet/Certificates/wpsnappy.dev.crt"
 		// }
 	});
 
