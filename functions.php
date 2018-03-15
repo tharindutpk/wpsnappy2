@@ -8,7 +8,7 @@
  * @license      GPL-2.0+
  */
 
- // If this file is called directly, abort.
+// If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
 	die;
 }
@@ -19,7 +19,7 @@ include_once( get_template_directory() . '/lib/init.php' );
 // Define theme constants.
 define( 'CHILD_THEME_NAME', 'WPSnappy' );
 define( 'CHILD_THEME_URL', 'https://www.wpsnappy.com/' );
-define( 'CHILD_THEME_VERSION', '1.0.2' );
+define( 'CHILD_THEME_VERSION', '1.0.4' );
 
 // Set Localization (do not remove).
 load_child_theme_textdomain( 'wpsnappy', apply_filters( 'child_theme_textdomain', get_stylesheet_directory() . '/languages', 'wpsnappy' ) );
@@ -27,22 +27,16 @@ load_child_theme_textdomain( 'wpsnappy', apply_filters( 'child_theme_textdomain'
 // Remove secondary sidebar.
 unregister_sidebar( 'sidebar-alt' );
 
+// Remove header right sidebar.
+unregister_sidebar( 'header-right' );
+
 // Remove unused site layouts.
 genesis_unregister_layout( 'content-sidebar-sidebar' );
 genesis_unregister_layout( 'sidebar-content-sidebar' );
 genesis_unregister_layout( 'sidebar-sidebar-content' );
 
-// Enable support for page excerpts.
-add_post_type_support( 'page', 'excerpt' );
-
 // Enable shortcodes in text widgets.
 add_filter( 'widget_text', 'do_shortcode' );
-
-// Enable support for WooCommerce and WooCommerce features.
-add_theme_support( 'woocommerce' );
-add_theme_support( 'wc-product-gallery-zoom' );
-add_theme_support( 'wc-product-gallery-lightbox' );
-add_theme_support( 'wc-product-gallery-slider' );
 
 // Enable support for structural wraps.
 add_theme_support( 'genesis-structural-wraps', array(
@@ -65,14 +59,14 @@ add_theme_support( 'genesis-accessibility', array(
 
 // Enable support for custom navigation menus.
 add_theme_support( 'genesis-menus' , array(
-	'primary'   => __( 'Header Menu', 'wpsnappy' ),
+	'primary'   => __( 'Primary Navigation', 'wpsnappy' ),
 ) );
 
 // Enable support for viewport meta tag for mobile browsers.
 add_theme_support( 'genesis-responsive-viewport' );
 
 // Enable support for Genesis footer widgets.
-add_theme_support( 'genesis-footer-widgets', 3 );
+add_theme_support( 'genesis-footer-widgets', 6 );
 
 // Enable support for Gutenberge wide images.
 add_theme_support( 'gutenberg', array(
@@ -91,29 +85,11 @@ add_theme_support( 'html5', array(
 	'search-form',
 ) );
 
-// Enable support for post formats.
-add_theme_support( 'post-formats', array(
-	'aside',
-	'audio',
-	'chat',
-	'gallery',
-	'image',
-	'link',
-	'quote',
-	'status',
-	'video',
-) );
-
 // Enable support for post thumbnails.
 add_theme_support( 'post-thumbnails' );
 
 // Enable support for selective refresh and Customizer edit icons.
 add_theme_support( 'customize-selective-refresh-widgets' );
-
-// Enable support for custom background image.
-add_theme_support( 'custom-background', array(
-	'default-color' => 'f4f5f6',
-) );
 
 // Enable support for logo option in Customizer > Site Identity.
 add_theme_support( 'custom-logo', array(
@@ -126,36 +102,6 @@ add_theme_support( 'custom-logo', array(
 
 // Display custom logo in site title area.
 add_action( 'genesis_site_title', 'the_custom_logo', 0 );
-
-// Enable support for custom header image or video.
-add_theme_support( 'custom-header', array(
-	'header-selector'    => '.hero',
-	'default_image'      => get_stylesheet_directory_uri() . '/assets/images/hero.jpg',
-	'header-text'        => true,
-	'default-text-color' => '30353a',
-	'width'              => 1920,
-	'height'             => 1080,
-	'flex-height'        => true,
-	'flex-width'         => true,
-	'uploads'            => true,
-	'video'              => true,
-	'wp-head-callback'   => 'wpsnappy_custom_header',
-) );
-
-// Register default header (just in case).
-register_default_headers( array(
-	'child' => array(
-		'url'           => '%2$s/assets/images/hero.jpg',
-		'thumbnail_url' => '%2$s/assets/images/hero.jpg',
-		'description'   => __( 'Hero Image', 'wpsnappy' ),
-	),
-) );
-
-// Register a custom layout.
-genesis_register_layout( 'custom-layout', array(
-	'label' => __( 'Custom Layout', 'wpsnappy' ),
-	'img'   => get_stylesheet_directory_uri() . '/assets/images/custom-layout.gif',
-) );
 
 // Change order of main stylesheet to override plugin styles.
 remove_action( 'genesis_meta', 'genesis_load_stylesheet' );
@@ -208,17 +154,97 @@ function wpsnappy_scripts_styles() {
 	) );
 }
 
-// Load helper functions.
-include_once( get_stylesheet_directory() . '/includes/helpers.php' );
-
 // Load miscellaneous functions.
 include_once( get_stylesheet_directory() . '/includes/extras.php' );
 
-// Load page header.
-include_once( get_stylesheet_directory() . '/includes/header.php' );
-
-// Load Customizer settings.
-include_once( get_stylesheet_directory() . '/includes/customize.php' );
-
 // Load default settings.
 include_once( get_stylesheet_directory() . '/includes/defaults.php' );
+
+// Add Image Sizes.
+add_image_size( 'featured-image', 700, 350, true );
+
+// Customize the credits.
+add_filter( 'genesis_footer_creds_text', 'wpsnappy_footer_creds_text' );
+function wpsnappy_footer_creds_text() {
+	echo '<div class="creds"><p>';
+	echo 'Copyright &copy; ';
+	echo date( 'Y' );
+	echo ' <a target="_blank" href="/">WP Snappy</a>. Powered by <a target="_blank" href="https://www.wordpress.org">WordPress</a> and <a target="_blank" href="https://www.studiopress.com">Genesis</a>.</p>';
+	echo '<p>Powered by <a target="_blank" href="/go/siteground/">Siteground</a> & <a target="_blank" href="https://aws.amazon.com/cloudfront/pricing/">Amazon CloudFront</a>.</p></div>';
+}
+
+// Reposition breadcrumbs.
+remove_action( 'genesis_before_loop', 'genesis_do_breadcrumbs' );
+add_action( 'genesis_entry_header', 'genesis_do_breadcrumbs', 9 );
+
+// Add Google Analytics
+add_action( 'wp_head', 'wpsnappy_google_analytics' );
+function wpsnappy_google_analytics() {
+?>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-114126818-1"></script>
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	
+	gtag('config', 'UA-114126818-1');
+</script>
+<?php
+}
+
+// Adding Schema to Hosting Pages
+add_filter( 'wp_head', 'wpsnappy_hosting_schema' );
+function wpsnappy_hosting_schema() {
+	if ( ! is_singular( 'hosting' ) ) {
+		return;
+	}
+	$hosting_provider = get_post_meta( get_the_ID(), '_wpsnappy_hosting_provider_name', true );
+	$review_score     = get_post_meta( get_the_ID(), '_wpsnappy_hosting_review_total', true );
+?>
+<script type="application/ld+json">
+{
+"@context": "http://schema.org",
+"@type": "Review",
+"itemReviewed": "<?php echo $hosting_provider; ?> Review",
+"reviewRating": {
+	"@type": "Rating",
+	"bestRating": "5",
+	"worstRating": "1",
+	"ratingValue": "<?php echo $review_score ?>"
+},
+"datePublished": "<?php echo get_the_modified_date( 'Y-m-d' ); ?>",
+"author": "Tharindu Pramuditha"
+}
+</script>
+<?php
+}
+
+// truncate Yoast SEO breadcrumb title
+function shorten_yoast_breadcrumb_title( $link_info ) {
+	$limit = 50;
+	if ( strlen( $link_info['text'] ) > ( $limit ) ) {
+		$link_info['text'] = substr( $link_info['text'], 0, $limit ) . '&hellip;';
+	}
+
+	return $link_info;
+}
+add_filter( 'wpseo_breadcrumb_single_link_info', 'shorten_yoast_breadcrumb_title', 10 );
+
+// Register a new sidebar
+genesis_register_sidebar( array(
+	'id'          => 'hosting-sidebar',
+	'name'        => 'Hosting Sidebar',
+	'description' => 'Widget area for hosting CPT pages.',
+) );
+
+add_action( 'get_header', 'wpsnappy_change_hosting_sidebar' );
+function wpsnappy_change_hosting_sidebar() {
+	if ( is_singular('hosting')) {
+		remove_action( 'genesis_sidebar', 'genesis_do_sidebar' );
+		
+		add_action( 'genesis_sidebar', function() {
+			dynamic_sidebar( 'hosting-sidebar' );
+		} );
+	}
+}

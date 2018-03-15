@@ -4,7 +4,7 @@
  * Description: The WPSnappy theme for the Genesis Framework.
  * Author:      Tharindu Pramuditha
  * Author URI:  https://www.wpsnappy.com/
- * Version:     1.0.2
+ * Version:     1.0.4
  * Text Domain: wpsnappy
  * Template:    genesis
  */
@@ -1007,7 +1007,7 @@ th {
 }
 
 .content-sidebar-wrap {
-	max-width: 1280px;
+	max-width: 1200px;
 	padding-top: 5%;
 	padding-bottom: 5%;
 }
@@ -1303,7 +1303,7 @@ img.alignright,
 /* ## Site Header
 --------------------------------------------- */
 .site-header {
-	position: absolute;
+	position: relative;
 	width: 100%;
 	z-index: 100;
 	background-color: #ffffff;
@@ -2570,7 +2570,7 @@ p.entry-meta {
 	.content-sidebar-wrap,
 	.wrap {
 		width: 90%;
-		max-width: 1280px;
+		max-width: 1200px;
 		padding-left: 0;
 		padding-right: 0;
 	}
@@ -2674,7 +2674,7 @@ p.entry-meta {
 	}
 	.site-footer > .wrap {
 		width: 90%;
-		max-width: 1280px;
+		max-width: 1200px;
 		padding: 6rem 0;
 	}
 	.site-footer .widget-area {
@@ -2740,11 +2740,11 @@ p.entry-meta {
 		width: 100%;
 	}
 	.sidebar-primary {
-		width: 25%;
+		width: 28%;
 	}
 	.sidebar-content .content,
 	.content-sidebar .content {
-		width: calc(75% - 4rem);
+		width: calc(72% - 4rem);
 	}
 	.home .content {
 		width: 100%;
@@ -2871,7 +2871,7 @@ p.entry-meta {
 	}
 }
 
-@media (min-width: 1280px) {
+@media (min-width: 1200px) {
 	.sub-menu a {
 		padding: 1em;
 	}

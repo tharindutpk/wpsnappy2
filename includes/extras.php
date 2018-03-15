@@ -13,44 +13,6 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-add_filter( 'body_class', 'wpsnappy_body_class' );
-/**
- * Add fixed header class.
- *
- * Checks if theme supports a fixed header and if so, adds a 'fixed-header'
- * class to the body. To enable a fixed header simply add theme support e.g:
- * `add_theme_support( 'fixed-header' );`
- *
- * @since  2.0.0
- *
- * @param  array $classes Body classes.
- *
- * @return array
- */
-function wpsnappy_body_class( $classes ) {
-
-	if ( current_theme_supports( 'fixed-header' ) ) {
-
-		$classes[] = 'has-fixed-header';
-
-	}
-
-	if ( has_nav_menu( 'secondary' ) ) {
-
-		$classes[] = 'has-nav-secondary';
-
-	}
-
-	if ( is_active_sidebar( 'before-header' ) ) {
-
-		$classes[] = 'has-before-header';
-
-	}
-
-	return $classes;
-
-}
-
 add_filter( 'genesis_attr_title-area', 'wpsnappy_title_area_schema' );
 /**
  * Add schema microdata to title-area.
@@ -243,19 +205,19 @@ function wpsnappy_dont_update_theme( $request, $url ) {
 }
 
 // Remove Query String from Static Resources
-// function remove_css_js_ver( $src ) {
-// 	if( strpos( $src, '?ver=' ) ) {
-// 		$src = remove_query_arg( 'ver', $src );
-// 	}
-// 	return $src;
-// }
-// add_filter( 'style_loader_src', 'remove_css_js_ver', 10, 2 );
-// add_filter( 'script_loader_src', 'remove_css_js_ver', 10, 2 );
+function remove_css_js_ver( $src ) {
+	if( strpos( $src, '?ver=' ) ) {
+		$src = remove_query_arg( 'ver', $src );
+	}
+	return $src;
+}
+add_filter( 'style_loader_src', 'remove_css_js_ver', 10, 2 );
+add_filter( 'script_loader_src', 'remove_css_js_ver', 10, 2 );
 
 //Removes Title and Description on CPT Archive
 // remove_action( 'genesis_before_loop', 'genesis_do_cpt_archive_title_description' );
 //Removes Title and Description on Blog Archive
-remove_action( 'genesis_before_loop', 'genesis_do_posts_page_heading' );
+// remove_action( 'genesis_before_loop', 'genesis_do_posts_page_heading' );
 //Removes Title and Description on Date Archive
 // remove_action( 'genesis_before_loop', 'genesis_do_date_archive_title' );
 //Removes Title and Description on Archive, Taxonomy, Category, Tag
@@ -264,3 +226,6 @@ remove_action( 'genesis_before_loop', 'genesis_do_posts_page_heading' );
 // remove_action( 'genesis_before_loop', 'genesis_do_author_title_description', 15 );
 //Removes Title and Description on Blog Template Page
 // remove_action( 'genesis_before_loop', 'genesis_do_blog_template_heading' );
+
+// Gravity form field label hide option
+add_filter( 'gform_enable_field_label_visibility_settings', '__return_true' );
