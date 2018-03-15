@@ -1,69 +1,233 @@
 /* ## Front Page
 --------------------------------------------- */
 
-.front-page-1,
-.front-page-2,
-.front-page-3,
-.front-page-4,
-.front-page-5 {
-    width: 100%;
-    padding: 6rem 0;
-    background-color: $white;
-    border-bottom: $site-border;
-    position: relative;
-    @include breakpoint(sm) {
-        padding: 6rem 0 2rem;
-    }
-    .wrap {
-        @include breakpoint(sm) {
-            display: flex;
-            flex-wrap: wrap;
-        }
-    }
+.home {
+	background-color: $white;
 }
 
-.front-page-1 {
-    padding: calc(20vw + 7rem) 0 20vw;
-    position: relative;
-    background-color: $dark;
-    @include clearfix;
-    @include breakpoint(sm) {
-        padding: calc(20vh + 12rem) 0 20vh;
-    }
-    @include breakpoint(md) {
-        padding: calc(20vh + 12rem) 0 20vh;
-    }
-    @include breakpoint(lg) {
-        padding: calc(20vh + 12rem) 0 20vh;
-    }
-    .wrap {
-        position: relative;
-        text-align: center;
-        @include breakpoint(md) {
-            max-width: map-get($breakpoints, sm);
-        }
-    }
-    .widget {
-        background-color: transparent;
-        &:last-of-type {
-            margin-bottom: 1rem; // For heading line height.
-        }
-    }
-    h1 {
-        margin: 0 0 0.618em;
-    }
-    p {
-        margin: 0 0 1.382em;
-    }
-}
-
-
-/* ## Custom Header
+/* ## Custom Homepage Sections
 --------------------------------------------- */
 
 .home-section {
-    padding: 6rem 0;
-    .section-title {
-        font-size: 3.5rem;
-    }
+	margin-bottom: 6rem;
+	&:last-of-type {
+		margin-bottom: 0;
+	}
+	.section-title {
+		text-align: center;
+		margin-bottom: 0;
+	}
+}
+
+/* ## Quick Access Homepage
+--------------------------------------------- */
+
+.featured-links {
+	color: #555;
+	text-align: center;
+	margin-top: 4rem;
+	.featured-links-border {
+		height: 0.6rem;
+		background-color: #004c6b;
+	}
+	.featured-links-border-inner {
+		height: 0.6rem;
+		width: 400px;
+		margin: 0 auto;
+		background: linear-gradient(to right, #E96D09 20%, #E96D09 20%, #A62CA2 20%, #A62CA2 40%, #4F0090 40%, #4F0090 60%, #26B4AC 60%, #26B4AC 80%, #7FD759 80%);
+	}
+	.featured-links-inner {
+		background-color: $accentLight;
+		border: $site-border;
+		padding: 2rem 0;
+		h3 {
+			&.section-title {
+				color: $accent;
+				font-size: 2.5rem;
+				margin-bottom: 0;
+			}
+		}
+	}
+	ul.featured-links-list {
+		display: flex;
+		flex-direction: row;
+		padding: 1.5rem 0;
+		li {
+			flex: 1 1 30%;
+			text-align: center;
+			line-height: 1;
+			padding: 0.5rem;
+			a {
+				text-decoration: none;
+				color: #4b4b4b;
+			}
+			img {
+				width: 70px;
+				height: 70px;
+				display: block;
+				margin: 0 auto 2rem;
+			}
+			h3 {
+				display: inline;
+				font-size: 1.8rem;
+			}
+		}
+	}
+}
+
+/* ## Featured Articles
+--------------------------------------------- */
+
+.featured-articles {
+	.featured-sections {
+		margin: 4rem 0;
+	}
+}
+
+.featured-main {
+	margin: 3rem 0;
+}
+
+.featured-row {
+	@include clearfix;
+	.one-third {
+		border: $site-border;
+		margin-bottom: 4rem;
+		.featured-row-body {
+			padding: 2rem;
+		}
+		.featured-row-header {
+			display: flex;
+			flex-wrap: wrap;
+			line-height: 1.65rem;
+			text-transform: uppercase;
+			color: #bbb;
+			margin-bottom: 1rem;
+			justify-content: space-between;
+			.category {
+				text-align: left;
+				font-size: 1.5rem;
+				letter-spacing: 0.1rem;
+			}
+			.index {
+				text-align: right;
+				font-size: 2.5rem;
+				font-weight: $bold;
+			}
+		}
+		.featured-row-footer {
+			p {
+				&:last-child {
+					margin-bottom: 0;
+				}
+			}
+			a {
+				color: #555;
+				font-size: 1.8rem;
+				font-weight: $bold;
+				text-decoration: none;
+				&:hover {
+					text-decoration: underline;
+				}
+			}
+		}
+	}
+}
+
+.blog-link {
+	text-align: center !important;
+	a {
+		text-transform: uppercase;
+		font-weight: $bold;
+		border-bottom: 1px solid #bbbbbb;
+		&:hover {
+			text-decoration: none;
+		}
+	}
+}
+
+/* ## Signup footer
+--------------------------------------------- */
+
+.signup-footer {
+	background-color: #f7f7f7;
+	overflow: hidden;
+	clear: both;
+	padding: 10rem 0 6rem 0;
+	text-align: center;
+	> .wrap {
+		max-width: 700px;
+	}
+	h3 {
+		font-size: 3.5rem;
+		font-weight: $bold;
+		margin-bottom: 2rem !important;
+	}
+	.sign-up-text {
+		margin: 0 auto;
+		max-width: 700px;
+		font-size: 1.8rem;
+		text-align: center;
+		margin-bottom: 2rem;
+	}
+}
+
+.sign-up-form-footer {
+	max-width: 550px;
+	margin: 50px auto;
+}
+
+.footer-form-fields input {
+	border: none;
+	background-color: $white;
+	height: 54px;
+	border-radius: 30px;
+	font-size: 2rem;
+	padding-left: 30px;
+	color: $dark;
+}
+
+.sign-up-form-footer .button {
+	height: 54px;
+	font-size: 1.6rem;
+	border-radius: 30px;
+	margin-top: -58px;
+	color: $white;
+	background-color: #ee4a03;
+	border-color: #ee4a03;
+	float: right;
+	position: relative;
+	right: 4px;
+}
+
+.footer-form-fields {
+	padding: 4px;
+	box-shadow: 0 8px 30px 0 rgba(0, 0, 0, .2);
+	border-radius: 30px;
+	color: #444;
+	background-color: $white;
+}
+
+::-webkit-input-placeholder {
+	color: #777;
+}
+
+::-webkit-input-placeholder {
+	color: #777;
+}
+
+:-moz-placeholder {
+	color: #777;
+}
+
+::-moz-placeholder {
+	color: #777;
+}
+
+:-ms-input-placeholder {
+	color: #777;
+}
+
+::-ms-input-placeholder {
+	color: #777;
 }

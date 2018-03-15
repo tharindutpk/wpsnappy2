@@ -2,72 +2,223 @@
 --------------------------------------------- */
 
 .widget {
-    margin-bottom: 6vw;
-    word-wrap: break-word;
-    background-color: $white;
-    @include breakpoint(md) {
-        margin-bottom: 4rem;
-    }
-    &:last-of-type {
-        margin-bottom: 0;
-        @include breakpoint(md) {
-            margin-bottom: 4rem;
-        }
-    }
-    .sidebar & {
-        margin-bottom: 0;
-        margin-top: 5vw;
-		font-size: 1.6rem;
-        padding: 6vw;
-        @include breakpoint(sm) {
-            margin-top: 4rem;
-            padding: 4rem;
-        }
-        &:first-of-type {
-            @include breakpoint(md) {
-                margin-top: 0;
-            }
+	margin-bottom: 6vw;
+	word-wrap: break-word;
+	@include breakpoint(md) {
+		margin-bottom: 4rem;
+	}
+	&:last-of-type {
+		margin-bottom: 0;
+		@include breakpoint(md) {
+			margin-bottom: 4rem;
 		}
-    }
-    p {
-         &:last-of-type {
-            margin-bottom: 0;
-        }
-    }
-    ul>li:last-of-type:not(.gfield) {
-        margin-bottom: 0;
-    }
-    ul>li {
-        margin-bottom: 0.5em;
-        padding-bottom: 0.5em;
-    }
-    ul>li:last-of-type {
-        padding-bottom: 0;
-    }
-    ol>li {
-        list-style-position: inside;
-        list-style-type: decimal;
-        padding-left: 1em;
-        text-indent: -1em;
-    }
-    li li {
-        border: 0;
-        margin: 0 0 0 1em;
-        padding: 0;
-    }
+	}
+	.sidebar & {
+		margin-bottom: 0;
+		margin-top: 5vw;
+		font-size: 1.6rem;
+		padding: 6vw;
+		background-color: $white;
+		@include breakpoint(sm) {
+			margin-top: 4rem;
+			padding: 4rem;
+		}
+		&:first-of-type {
+			@include breakpoint(md) {
+				margin-top: 0;
+			}
+		}
+		.widget {
+			background-color: $white;
+		}
+		.widget-title {
+			text-align: center;
+		}
+		p {
+			text-align: center;
+		}
+	}
+	p {
+		&:last-of-type {
+			margin-bottom: 0;
+		}
+	}
+	ul>li:last-of-type:not(.gfield) {
+		margin-bottom: 0;
+	}
+	ul>li {
+		margin-bottom: 0.5em;
+		padding-bottom: 0.5em;
+	}
+	ul>li:last-of-type {
+		padding-bottom: 0;
+	}
+	ol>li {
+		list-style-position: inside;
+		list-style-type: decimal;
+		padding-left: 1em;
+		text-indent: -1em;
+	}
+	li li {
+		border: 0;
+		margin: 0 0 0 1em;
+		padding: 0;
+	}
 }
 
 .widget-title {
-    font-family: $font-heading;
-    font-size: 2rem;
+	font-family: $font-heading;
+	font-size: 2rem;
 }
 
 .widget_calendar {
-    table {
-        width: 100%;
-    }
-    td,
-    th {
-        text-align: center;
-    }
+	table {
+		width: 100%;
+	}
+	td,
+	th {
+		text-align: center;
+	}
+}
+
+.sidebar-social {
+	ul {
+		text-align: center;
+		margin-top: 20px;
+		>li {
+			margin-bottom: 0px;
+			padding: 0px 0.6rem 0;
+			display: inline-block;
+		}
+	}
+}
+
+.sidebar-optin {
+	background-color: #444 !important;
+	color: $white;
+	.widget-title {
+		color: $white;
+	}
+	#mailchimp {
+		p {
+			color: #ccc;
+			margin-bottom: 1rem;
+		}
+		input {
+			border: none;
+			text-align: center;
+			color: #333;
+			font-size: 1.6rem;
+			margin-bottom: 1rem;
+			padding: 0.8rem 1rem;
+			&.email {
+				background-color: #d1cbca;
+			}
+		}
+		input[type="submit"] {
+			background: #ee4a03;
+			color: $white;
+			cursor: pointer;
+			width: 100%;
+			padding: 0.8rem 0;
+			margin-bottom: 0;
+		}
+		.mc-fields {
+			background-color: $light;
+			padding: 1rem;
+			border-radius: $site-radius;
+			margin-bottom: 1rem;
+		}
+		.mc-interested-in {
+			text-align: center;
+			input {
+				width: auto;
+			}
+			label {
+				padding-left: 0.5rem;
+				padding-right: 1rem;
+			}
+			li {
+				display: inline-block;
+				margin: 0;
+				padding: 0
+			}
+		}
+	}
+}
+
+.sidebar-hosting {
+	// box-shadow: 1px 1px 5px #e6e4e1, -1px -1px 5px #e6e4e1;
+	border: 1px solid #e2e2e2;
+	.package-price {
+		font-weight: $bold;
+		span {
+			font-size: 2.8rem;
+			display: block;
+			margin: 0;
+		}
+	}
+	.button {
+		display: flex;
+		justify-content: center;
+		background-color: #6772e5;
+		font-weight: $normal;
+		font-size: 2rem;
+		margin: 1rem 0;
+		text-transform: none;
+		padding: 1.4rem 0;
+		background-image: linear-gradient(90deg, #6772e5 0, #5561de 100%);
+	}
+	.hosting-info {
+		margin: 3rem auto 0 auto;
+		text-align: center;
+		display: flex;
+		flex-wrap: wrap;
+		.hosting-info-item {
+			flex: 1 1 50%;
+			// min-height: 200px;
+			// display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			padding: 10px;
+			a {
+				display: block;
+				font-size: 2.5rem;
+				&:hover {
+					text-decoration: none;
+				}
+				&:focus {
+					text-decoration: none;
+				}
+			}
+		}
+		.uptime {
+			border-right: $site-border;
+			border-bottom: $site-border;
+			a {
+				color: #23ab11;
+			}
+		}
+		.load-time {
+			border-bottom: $site-border;
+			border-left: $site-border;
+			a {
+				color: #F7761F;
+			}
+		}
+		.domain-fee {
+			border-top: $site-border;
+			border-right: $site-border;
+			a {
+				color: $accent;
+			}
+		}
+		.ratings {
+			border-left: $site-border;
+			border-top: $site-border;
+			a {
+				color: #d33d84;
+			}
+		}
+	}
 }

@@ -1,0 +1,159 @@
+/* ## Hosting Review Box
+--------------------------------------------- */
+
+.hosting-review-box {
+	padding: 4rem;
+	margin-top: 4rem;
+	background-color: $white;
+	ul.hosting-score-list {
+		li {
+			&:first-of-type {
+				background-color: $light;
+				font-weight: $bold;
+				text-transform: uppercase;
+				letter-spacing: 0.1rem;
+				margin-bottom: 1rem;
+			}
+			padding: 5px 15px;
+			position: relative;
+		}
+	}
+	.hosting-review-score {
+		position: absolute;
+		float: right;
+		right: 15px;
+		margin: 0 auto;
+		display: inline-block;
+		.star-rating-holder {
+			background: url(assets/images/sprites/spritesheet.png) no-repeat 0 0;
+			width: 111px;
+			height: 22px;
+			display: inline-block;
+		}
+		.star-rating-filled {
+			background: url(assets/images/sprites/spritesheet.png) no-repeat 0 -22px;
+			width: 111px;
+			height: 22px;
+			display: inline-block;
+		}
+		.score-numbers {
+			display: inline-block;
+			float: right;
+			text-align: right;
+			width: 50px;
+		}
+	}
+	a.swp_CTT.none .sw-click-to-tweet {
+		margin: 2rem 0 0rem 0;
+	}
+}
+
+/* ## Hosting CPT Top features
+--------------------------------------------- */
+
+.hosting-top-features {
+	padding: 4rem;
+	margin-top: 4rem;
+	background-color: $white;
+	.hosting-top-features-list {
+		margin-top: 2rem;
+		li {
+			font-size: 1.5rem;
+			width: 100%;
+			margin-bottom: 5px;
+			float: left;
+			list-style: none;
+			@include breakpoint(lg) {
+				width: 33%;
+			}
+			@include breakpoint(xs) {
+				width: 50%;
+			}
+			i {
+				font-size: 1.5rem;
+				display: inline-block;
+				padding-right: 5px;
+				color: #23ab11;
+			}
+		}
+	}
+}
+
+.section-title {
+	text-align: center;
+	font-size: 2.5rem;
+}
+
+/* ## Hosting CPT FAQ
+--------------------------------------------- */
+
+.hosting-faq {
+	padding: 4rem;
+	background-color: $white;
+	margin-top: 40px;
+	.section-title {
+		span {
+			display: inline;
+			color: $accent;
+			font-weight: $bold;
+		}
+	}
+}
+
+.hosting-faq-pane {
+	margin-top: 2.5rem;
+	ul {
+		margin: 0;
+		li {
+			padding-bottom: 1rem;
+		}
+	}
+	.hosting-faq-question {
+		display: block;
+		word-break: keep-all;
+	}
+	.hosting-faq-answer {
+		margin: 1rem 0;
+		padding: 2rem;
+		font-size: 1.5rem;
+		background-color: $light;
+		p {
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+}
+
+.hosting-shortcode {
+	background-color: #fafbfc;
+	border: $site-border;
+	border-color: #efefef;
+	border-radius: $site-radius;
+	padding: 1rem 2rem;
+	@include clearfix;
+	span {
+		color: #696969;
+	}
+	a {
+		&:hover {
+			text-decoration: none;
+		}
+	}
+	p {
+		margin-bottom: 0;
+		font-size: 1.8rem;
+		letter-spacing: 0.05rem;
+		a {
+			&.ratings {
+				color: #d33d84;
+			}
+			&.uptime {
+				color: #23ab11;
+			}
+			&.load-time {
+				color: #f7761f;
+			}
+		}
+	}
+}
