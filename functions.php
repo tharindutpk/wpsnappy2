@@ -19,7 +19,7 @@ include_once( get_template_directory() . '/lib/init.php' );
 // Define theme constants.
 define( 'CHILD_THEME_NAME', 'WPSnappy' );
 define( 'CHILD_THEME_URL', 'https://www.wpsnappy.com/' );
-define( 'CHILD_THEME_VERSION', '1.0.4' );
+define( 'CHILD_THEME_VERSION', '1.0.5' );
 
 // Set Localization (do not remove).
 load_child_theme_textdomain( 'wpsnappy', apply_filters( 'child_theme_textdomain', get_stylesheet_directory() . '/languages', 'wpsnappy' ) );

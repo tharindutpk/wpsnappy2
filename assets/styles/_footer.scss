@@ -2,34 +2,44 @@
 --------------------------------------------- */
 
 .site-footer {
-    width: 100%;
-    background-color: $white;
-    font-size: 1.8rem;
-    > .wrap {
-        margin: 0 auto;
-        padding: 5vw;
-        text-align: center;
-        font-size: 1.6rem;
-        position: relative;
-        @include breakpoint(sm) {
-            width: 90%;
-            max-width: map-get($breakpoints, xl);
-            padding: 6rem 0;
-        }
-        &:last-of-type {
-            margin-bottom: 0;
-        }
-    }
-    p {
-        &:last-of-type {
-            margin-bottom: 0;
-        }
-    }
-    .widget-area {
-        @include breakpoint(sm) {
-            margin-bottom: 0;
-        }
-    }
+	width: 100%;
+	background-color: #282b2d;
+	font-size: 1.5rem;
+	color: $white;
+	letter-spacing: 0.05rem;
+	>.wrap {
+		margin: 0 auto;
+		padding: 5vw;
+		text-align: center;
+		font-size: 1.5rem;
+		position: relative;
+		@include breakpoint(sm) {
+			width: 90%;
+			max-width: map-get($breakpoints, xl);
+			padding: 4rem 0;
+		}
+		&:last-of-type {
+			margin-bottom: 0;
+		}
+	}
+	p {
+		margin-bottom: 1rem;
+		&:last-of-type {
+			margin-bottom: 0;
+		}
+	}
+	.widget-area {
+		@include breakpoint(sm) {
+			margin-bottom: 0;
+		}
+	}
+	.creds {
+		a {
+			color: #999;
+			text-decoration: none;
+			border-bottom: 1px solid #999;
+		}
+	}
 }
 
 
@@ -37,16 +47,19 @@
 --------------------------------------------- */
 
 .footer-widgets {
-    padding: 6rem 0;
-    border-bottom: $site-border;
-    .wrap {
-        @include breakpoint(sm) {
-            display: flex;
-            flex-wrap: wrap;
-        }
-    }
-    .widget-area {
-        margin: 0 auto 4rem;
+	color: $white;
+	font-size: 1.4rem;
+	padding: 6rem 0;
+	letter-spacing: 0.05rem;
+	background-color: #2e3234;
+	.wrap {
+		@include breakpoint(sm) {
+			display: flex;
+			flex-wrap: wrap;
+		}
+	}
+	.widget-area {
+		margin: 0 auto 4rem;
 		@include breakpoint(sm) {
 			flex: 1;
 			margin-left: 2.564102564102564%;
@@ -54,16 +67,31 @@
 				margin-left: 0;
 			}
 		}
-        &:last-of-type {
-            margin-bottom: 0;
-        }
-        .widget {
-            width: 100%;
-            display: block;
-            margin: 0 auto 2em;
-            &:last-of-type {
-                margin-bottom: 0;
-            }
-        }
-    }
+		&:last-of-type {
+			margin-bottom: 0;
+		}
+		.widget {
+			width: 100%;
+			display: block;
+			margin: 0 auto 2em;
+			&:last-of-type {
+				margin-bottom: 0;
+			}
+		}
+	}
+	a {
+		color: $white;
+		text-decoration: none;
+	}
+	.custom-button a {
+		margin-top: 1.5rem;
+	}
+	.footer-social {
+		ul {
+			>li {
+				display: inline-block;
+				padding-right: 5px;
+			}
+		}
+	}
 }
