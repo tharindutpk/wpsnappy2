@@ -22,7 +22,7 @@ add_action( 'genesis_loop', 'wpsnappy_404' );
 function wpsnappy_404() {
 
 	genesis_markup( array(
-		'open' => '<article class="entry">',
+		'open'    => '<article class="entry">',
 		'context' => 'entry-404',
 	) );
 
@@ -46,7 +46,7 @@ function wpsnappy_404() {
 	) );
 
 	genesis_markup( array(
-		'close' => '</article>',
+		'close'   => '</article>',
 		'context' => 'entry-404',
 	) );
 

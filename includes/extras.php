@@ -126,122 +126,6 @@ function wpsnappy_remove_metaboxes( $hook ) {
 
 }
 
-add_filter( 'genesis_site_layout', 'wpsnappy_page_layouts' );
-/**
- * Set page layout for special page templates.
- *
- * This allows users to choose the page layout for the search results
- * page and the error 404 page by creating the pages with the same
- * slug. Featured images and excerpts are also used from them.
- *
- * @since 2.2.7
- *
- * @return string
- */
-function wpsnappy_page_layouts() {
-
-	if ( is_search() ) {
-
-		$page   = get_page_by_path( 'search' );
-		$field  = genesis_get_custom_field( '_genesis_layout', $page->ID );
-		$layout = $field ? $field : genesis_get_option( 'site_layout' );
-
-		return $layout;
-
-	}
-
-	if ( is_404() ) {
-
-		$page   = get_page_by_path( 'error' );
-		$field  = genesis_get_custom_field( '_genesis_layout', $page->ID );
-		$layout = $field ? $field : genesis_get_option( 'site_layout' );
-
-		return $layout;
-
-	}
-
-}
-
-add_action( 'wp_head', 'wpsnappy_remove_ssi_inline_styles', 1 );
-/**
- * Remove Simple Social Icons inline CSS.
- *
- * No longer needed because we are generating custom CSS instead,
- * removing this means that we don't need to use !important rules
- * in the above function.
- *
- * @since  2.0.0
- *
- * @return void
- */
-function wpsnappy_remove_ssi_inline_styles() {
-
-	global $wp_widget_factory;
-
-	remove_action( 'wp_head', array( $wp_widget_factory->widgets['Simple_Social_Icons_Widget'], 'css' ) );
-
-}
-
-add_action( 'wp_head', 'wpsnappy_simple_social_icons_css' );
-/**
- * Simple Social Icons multiple instances workaround.
- *
- * By default, Simple Social Icons only allows you to create one
- * style for your icons, even if you have multiple on one page.
- * This function allows us to output different styles for each
- * widget that is output on the front end.
- *
- * @since  2.0.0
- *
- * @return void
- */
-function wpsnappy_simple_social_icons_css() {
-
-	if ( ! class_exists( 'Simple_Social_Icons_Widget' ) ) {
-
-		return;
-
-	}
-
-	$obj = new Simple_Social_Icons_Widget();
-
-	// Get widget settings.
-	$all_instances = $obj->get_settings();
-
-	// Loop through instances.
-	foreach ( $all_instances as $key => $options ) :
-
-		$instance = wp_parse_args( $all_instances[ $key ] );
-		$font_size = round( (int) $instance['size'] / 2 );
-		$icon_padding = round( (int) $font_size / 2 );
-
-		// CSS to output.
-		$css = '#' . $obj->id_base . '-' . $key . ' ul li a,
-		#' . $obj->id_base . '-' . $key . ' ul li a:hover {
-			background-color: ' . $instance['background_color'] . ';
-			border-radius: ' . $instance['border_radius'] . 'px;
-			color: ' . $instance['icon_color'] . ';
-			border: ' . $instance['border_width'] . 'px ' . $instance['border_color'] . ' solid;
-			font-size: ' . $font_size . 'px;
-			padding: ' . $icon_padding . 'px;
-		}
-		
-		#' . $obj->id_base . '-' . $key . ' ul li a:hover {
-			background-color: ' . $instance['background_color_hover'] . ';
-			border-color: ' . $instance['border_color_hover'] . ';
-			color: ' . $instance['icon_color_hover'] . ';
-		}';
-
-		// Minify.
-		$css = wpsnappy_minify_css( $css );
-
-		// Output.
-		printf( '<style type="text/css" media="screen">%s</style>', $css );
-
-	endforeach;
-
-}
-
 add_action( 'init', 'wpsnappy_structural_wrap_hooks' );
 /**
  * Add hooks immediately before and after Genesis structural wraps.
@@ -357,3 +241,26 @@ function wpsnappy_dont_update_theme( $request, $url ) {
 	return $request;
 
 }
+
+// Remove Query String from Static Resources
+// function remove_css_js_ver( $src ) {
+// 	if( strpos( $src, '?ver=' ) ) {
+// 		$src = remove_query_arg( 'ver', $src );
+// 	}
+// 	return $src;
+// }
+// add_filter( 'style_loader_src', 'remove_css_js_ver', 10, 2 );
+// add_filter( 'script_loader_src', 'remove_css_js_ver', 10, 2 );
+
+//Removes Title and Description on CPT Archive
+// remove_action( 'genesis_before_loop', 'genesis_do_cpt_archive_title_description' );
+//Removes Title and Description on Blog Archive
+remove_action( 'genesis_before_loop', 'genesis_do_posts_page_heading' );
+//Removes Title and Description on Date Archive
+// remove_action( 'genesis_before_loop', 'genesis_do_date_archive_title' );
+//Removes Title and Description on Archive, Taxonomy, Category, Tag
+// remove_action( 'genesis_before_loop', 'genesis_do_taxonomy_title_description', 15 );
+//Removes Title and Description on Author Archive
+// remove_action( 'genesis_before_loop', 'genesis_do_author_title_description', 15 );
+//Removes Title and Description on Blog Template Page
+// remove_action( 'genesis_before_loop', 'genesis_do_blog_template_heading' );
