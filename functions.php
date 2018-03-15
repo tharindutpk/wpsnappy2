@@ -19,7 +19,7 @@ include_once( get_template_directory() . '/lib/init.php' );
 // Define theme constants.
 define( 'CHILD_THEME_NAME', 'WPSnappy' );
 define( 'CHILD_THEME_URL', 'https://www.wpsnappy.com/' );
-define( 'CHILD_THEME_VERSION', '1.0.1' );
+define( 'CHILD_THEME_VERSION', '1.0.2' );
 
 // Set Localization (do not remove).
 load_child_theme_textdomain( 'wpsnappy', apply_filters( 'child_theme_textdomain', get_stylesheet_directory() . '/languages', 'wpsnappy' ) );
@@ -66,7 +66,6 @@ add_theme_support( 'genesis-accessibility', array(
 // Enable support for custom navigation menus.
 add_theme_support( 'genesis-menus' , array(
 	'primary'   => __( 'Header Menu', 'wpsnappy' ),
-	'secondary' => __( 'After Header Menu', 'wpsnappy' ),
 ) );
 
 // Enable support for viewport meta tag for mobile browsers.
@@ -183,7 +182,10 @@ add_action( 'wp_enqueue_scripts', 'wpsnappy_scripts_styles', 99 );
 function wpsnappy_scripts_styles() {
 
 	// Google fonts.
-	wp_enqueue_style( 'google-fonts', '//fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700', array(), CHILD_THEME_VERSION );
+	wp_enqueue_style( 'lato-font', '//fonts.googleapis.com/css?family=Lato:400,700', array(), CHILD_THEME_VERSION );
+
+	// Font-awesome.
+	wp_enqueue_style( 'font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css' );
 
 	// Check if debugging is enabled.
 	$suffix = defined( SCRIPT_DEBUG ) && SCRIPT_DEBUG ? '' : 'min.';
@@ -201,7 +203,6 @@ function wpsnappy_scripts_styles() {
 		'menuClasses'      => array(
 			'combine' => array(
 				'.nav-primary',
-				'.nav-secondary',
 			),
 		),
 	) );
