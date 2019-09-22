@@ -203,29 +203,3 @@ function wpsnappy_dont_update_theme( $request, $url ) {
 	return $request;
 
 }
-
-// Remove Query String from Static Resources
-function remove_css_js_ver( $src ) {
-	if( strpos( $src, '?ver=' ) ) {
-		$src = remove_query_arg( 'ver', $src );
-	}
-	return $src;
-}
-add_filter( 'style_loader_src', 'remove_css_js_ver', 10, 2 );
-add_filter( 'script_loader_src', 'remove_css_js_ver', 10, 2 );
-
-//Removes Title and Description on CPT Archive
-// remove_action( 'genesis_before_loop', 'genesis_do_cpt_archive_title_description' );
-//Removes Title and Description on Blog Archive
-// remove_action( 'genesis_before_loop', 'genesis_do_posts_page_heading' );
-//Removes Title and Description on Date Archive
-// remove_action( 'genesis_before_loop', 'genesis_do_date_archive_title' );
-//Removes Title and Description on Archive, Taxonomy, Category, Tag
-// remove_action( 'genesis_before_loop', 'genesis_do_taxonomy_title_description', 15 );
-//Removes Title and Description on Author Archive
-// remove_action( 'genesis_before_loop', 'genesis_do_author_title_description', 15 );
-//Removes Title and Description on Blog Template Page
-// remove_action( 'genesis_before_loop', 'genesis_do_blog_template_heading' );
-
-// Gravity form field label hide option
-add_filter( 'gform_enable_field_label_visibility_settings', '__return_true' );
