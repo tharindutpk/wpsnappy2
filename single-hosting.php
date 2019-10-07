@@ -15,12 +15,6 @@
 // Hosting review box.
 add_action( 'genesis_after_entry', 'display_hosting_review_score', 1 );
 function display_hosting_review_score() {
-	$hosting_provider  = str_replace( ' ', '', get_post_meta( get_the_ID(), '_wpsnappy_hosting_provider_name', true ) );
-	$pricing_score     = get_post_meta( get_the_ID(), '_wpsnappy_hosting_review_pricing', true );
-	$features_score    = get_post_meta( get_the_ID(), '_wpsnappy_hosting_review_features', true );
-	$support_score     = get_post_meta( get_the_ID(), '_wpsnappy_hosting_review_support', true );
-	$reliability_score = get_post_meta( get_the_ID(), '_wpsnappy_hosting_review_reliability', true );
-	$total_score       = get_post_meta( get_the_ID(), '_wpsnappy_hosting_review_total', true );
 ?>
 <div class="hosting-review-box clearfix" id="ratings">
 	<h3 class="section-title">Review Score</h3>
@@ -72,10 +66,6 @@ function display_hosting_review_score() {
 				</div>
 			</li>
 		</ul>
-	</div>
-	<div class="one-half"></div>
-	<div>
-		<?php echo do_shortcode( '[clickToTweet tweet="SiteGround scored ' . $total_score . ' out of 5 in our review. Read our SiteGround review to know more! Cheers! #WordPress #' . $hosting_provider . '" quote="SiteGround scored ' . $total_score . ' out of 5 in our review. Read our SiteGround review to know more!" theme="none"]' ); ?>
 	</div>
 </div>
 <?php
